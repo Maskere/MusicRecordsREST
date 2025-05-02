@@ -16,7 +16,7 @@ namespace DRMusic.Tests
         public void EmptyConstructor_ShouldInitializePropertiesToDefaultValues()
         {
             // Arrange
-            var musicRecord = new MusicRecord();
+            var musicRecord = new MusicRecordModel();
 
             // Act & Assert
             Assert.IsNull(musicRecord.Title);
@@ -29,7 +29,7 @@ namespace DRMusic.Tests
         public void ToString_ShouldReturnFormattedString()
         {
             // Arrange
-            var musicRecord = new MusicRecord("Imagine", "John Lennon", 183, 1971);
+            var musicRecord = new MusicRecordModel("Imagine", "John Lennon", 183, 1971);
             var expected = "Title: Imagine, Artist: John Lennon, Duration: 183, Publication Year: 1971";
 
             // Act

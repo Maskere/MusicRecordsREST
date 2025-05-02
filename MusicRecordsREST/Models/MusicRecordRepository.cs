@@ -1,15 +1,15 @@
 namespace DRMusic{
     public class MusicRecordRepository{
-        private List<MusicRecord> records = new();
+        private List<MusicRecordModel> records = new();
 
         public MusicRecordRepository(){
-            records.Add(new MusicRecord("DreadNought","Sabaton", 3, 2009));
-            records.Add(new MusicRecord("American Idiot","Green-Day", 3, 2002));
-            records.Add(new MusicRecord("Run to the hills","IronMaiden", 5, 1999));
-            records.Add(new MusicRecord("Number of the beast","IronMaiden", 6, 2000));
+            records.Add(new MusicRecordModel("DreadNought","Sabaton", 3, 2009));
+            records.Add(new MusicRecordModel("American Idiot","Green-Day", 3, 2002));
+            records.Add(new MusicRecordModel("Run to the hills","IronMaiden", 5, 1999));
+            records.Add(new MusicRecordModel("Number of the beast","IronMaiden", 6, 2000));
         }
 
-        public List<MusicRecord>? Get(string? title = null, string? artist = null, int? duration = null, int? publication_year = null){
+        public List<MusicRecordModel>? Get(string? title = null, string? artist = null, int? duration = null, int? publication_year = null){
             if(title != null){
                 return records.FindAll(m => m.Title == title);
             }
@@ -29,7 +29,7 @@ namespace DRMusic{
             if(records == null){
                 throw new ArgumentNullException("Collection is empty");
             }
-            return new List<MusicRecord>(records);
+            return new List<MusicRecordModel>(records);
         }
     }
 }
