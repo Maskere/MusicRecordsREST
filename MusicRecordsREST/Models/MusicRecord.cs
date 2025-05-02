@@ -44,7 +44,7 @@ namespace DRMusic{
         }
         public override string ToString()
         {
-            return "";
+            return $"Title: {Title}, Artist: {Artist}, Duration: {Duration}, Publication Year: {Publication_year}";
         }
     }
 }

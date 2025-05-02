@@ -11,10 +11,32 @@ namespace DRMusic.Tests
     [TestClass()]
     public class MusicRecordTests
     {
-        [TestMethod()]
-        public void ToStringTest()
+
+        [TestMethod]
+        public void EmptyConstructor_ShouldInitializePropertiesToDefaultValues()
         {
-            Assert.Fail();
+            // Arrange
+            var musicRecord = new MusicRecord();
+
+            // Act & Assert
+            Assert.IsNull(musicRecord.Title);
+            Assert.IsNull(musicRecord.Artist);
+            Assert.AreEqual(0, musicRecord.Duration);
+            Assert.AreEqual(0, musicRecord.Publication_year);
+        }
+
+        [TestMethod]
+        public void ToString_ShouldReturnFormattedString()
+        {
+            // Arrange
+            var musicRecord = new MusicRecord("Imagine", "John Lennon", 183, 1971);
+            var expected = "Title: Imagine, Artist: John Lennon, Duration: 183, Publication Year: 1971";
+
+            // Act
+            var result = musicRecord.ToString();
+
+            // Assert
+            Assert.AreEqual(expected, result);
         }
     }
 }
