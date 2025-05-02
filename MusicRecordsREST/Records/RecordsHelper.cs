@@ -1,12 +1,16 @@
 ﻿namespace DRMusic
 {
 
-    public record MusicRecord(string? Title, string? Artist, int? Duration, int? Publication_year);
+    public record MusicRecord(int? Id, string? Title, string? Artist, int? Duration, int? Publication_year);
    
     public static class RecordsHelper
     {
         public static MusicRecordModel ConvertDRMusicRecord(MusicRecord record)
         {
+            if (record.Id == null)
+            {
+                throw new ArgumentNullException(nameof(record.Id), "Record cannot be null");
+            }
             if (record.Title == null)
             {
                 throw new ArgumentNullException(nameof(record.Title), "Record cannot be null");
