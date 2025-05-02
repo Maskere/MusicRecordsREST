@@ -7,6 +7,7 @@ namespace DRMusic{
         private int publication_year;
 
         public MusicRecordModel() : this("","",0,0){
+            Id = id;
             Title = title;
             Artist = artist;
             Duration = duration;
@@ -14,6 +15,7 @@ namespace DRMusic{
         }
 
         public MusicRecordModel(string? title, string? artist, int duration,int publication_year){
+            Id = id;
             Title = title;
             Artist = artist;
             Duration = duration;
