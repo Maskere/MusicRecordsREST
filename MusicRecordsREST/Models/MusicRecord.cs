@@ -1,5 +1,6 @@
 namespace DRMusic{
     public class MusicRecordModel{
+        private int id;
         private string? title;
         private string? artist;
         private int duration;
@@ -19,6 +20,12 @@ namespace DRMusic{
             Publication_year = publication_year;
         }
 
+        public int Id{
+            get => id;
+            set{
+                id = value;
+            }
+        }
         public string? Title{
             get => title;
             set{

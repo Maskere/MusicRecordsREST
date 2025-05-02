@@ -1,6 +1,4 @@
-﻿using DRMusic;
-
-namespace DRMusic
+﻿namespace DRMusic
 {
 
     public record MusicRecord(string? Title, string? Artist, int? Duration, int? Publication_year);

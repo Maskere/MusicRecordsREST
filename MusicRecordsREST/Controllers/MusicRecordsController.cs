@@ -1,4 +1,3 @@
-using DRMusic.Records;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DRMusic{
@@ -53,10 +52,20 @@ namespace DRMusic{
 
         // POST api/<MusicRecordsController>
         [HttpPost]
-        public MusicRecordModel Post([FromBody] MusicRecord record)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<MusicRecordModel> Post([FromBody] MusicRecord record)
         {
-            MusicRecordModel converted = RecordsHelper.ConvertDRMusicRecord(record);
-            MusicRecordModel createdmusic = repo.Add(converted);
+            try{
+                MusicRecordModel converted = RecordsHelper.ConvertDRMusicRecord(record);
+                MusicRecordModel createdmusic = repo.Add(converted);
+
+                return Created("/"+createdmusic.Id,createdmusic);
+            }
+            catch(ArgumentNullException ex){
+                return BadRequest(ex.Message);
+            }
+
         }
 
         // PUT api/<MusicRecordsController>/5

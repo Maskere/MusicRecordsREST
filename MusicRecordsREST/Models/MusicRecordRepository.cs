@@ -1,12 +1,13 @@
 namespace DRMusic{
     public class MusicRecordRepository{
         private List<MusicRecordModel> records = new();
+        private int nextId = 0;
 
         public MusicRecordRepository(){
-            records.Add(new MusicRecordModel("DreadNought","Sabaton", 3, 2009));
-            records.Add(new MusicRecordModel("American Idiot","Green-Day", 3, 2002));
-            records.Add(new MusicRecordModel("Run to the hills","IronMaiden", 5, 1999));
-            records.Add(new MusicRecordModel("Number of the beast","IronMaiden", 6, 2000));
+            this.Add(new MusicRecordModel("DreadNought","Sabaton", 3, 2009));
+            this.Add(new MusicRecordModel("American Idiot","Green-Day", 3, 2002));
+            this.Add(new MusicRecordModel("Run to the hills","IronMaiden", 5, 1999));
+            this.Add(new MusicRecordModel("Number of the beast","IronMaiden", 6, 2000));
         }
 
         public List<MusicRecordModel>? Get(string? title = null, string? artist = null, int? duration = null, int? publication_year = null){
@@ -37,6 +38,7 @@ namespace DRMusic{
                 throw new ArgumentNullException("Model is empty");
             }
 
+            model.Id = nextId++;
             records.Add(model);
             return model;
         }
