@@ -4,7 +4,11 @@ namespace DRMusic{
     [Route("api/[controller]")]
     [ApiController]
     public class MusicRecordsController : ControllerBase {
-        private MusicRecordRepository repo = new();
+        private MusicRecordRepository repo;
+
+        public MusicRecordsController(MusicRecordRepository repo){
+            this.repo = repo;
+        }
 
         // GET: api/<MusicRecordsController>
         [HttpGet]
@@ -29,6 +33,7 @@ namespace DRMusic{
                 {
                     mr = repo.Get(publication_year:publication_year);
                 }
+
                 if (mr == null)
                 {
                     throw new ArgumentNullException("Collection is empty");

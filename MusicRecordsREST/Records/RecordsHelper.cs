@@ -27,6 +27,7 @@
             {
                 throw new ArgumentException("Duration cannot be null or empty", nameof(record.Publication_year));
             }
+
             return new MusicRecordModel() {
                 Id = (int)record.Id,
                 Title = record.Title,
