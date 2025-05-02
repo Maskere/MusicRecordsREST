@@ -1,3 +1,4 @@
+using DRMusic.Records;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DRMusic{
@@ -10,9 +11,9 @@ namespace DRMusic{
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public ActionResult<List<MusicRecord>> Get([FromQuery] string? title = null, string? artist = null, int? duration = null, int? publication_year = null ) {
+        public ActionResult<List<MusicRecordModel>> Get([FromQuery] string? title = null, string? artist = null, int? duration = null, int? publication_year = null ) {
             try{
-                List<MusicRecord>? mr = repo.Get();
+                List<MusicRecordModel>? mr = repo.Get();
                 if (title != null)
                 {
                     mr = repo.Get(title);
@@ -36,7 +37,7 @@ namespace DRMusic{
                 if(mr.Count == 0){
                     return NoContent();
                 }
-                return Ok(new List<MusicRecord>(mr));
+                return Ok(new List<MusicRecordModel>(mr));
             }
             catch(ArgumentNullException){
                 return NoContent();
@@ -52,8 +53,10 @@ namespace DRMusic{
 
         // POST api/<MusicRecordsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public MusicRecordModel Post([FromBody] MusicRecord record)
         {
+            MusicRecordModel converted = RecordsHelper.ConvertDRMusicRecord(record);
+            MusicRecordModel createdmusic = repo.Add(converted);
         }
 
         // PUT api/<MusicRecordsController>/5

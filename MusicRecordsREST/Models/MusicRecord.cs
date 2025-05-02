@@ -1,18 +1,18 @@
 namespace DRMusic{
-    public class MusicRecord{
+    public class MusicRecordModel{
         private string? title;
         private string? artist;
         private int duration;
         private int publication_year;
 
-        public MusicRecord() : this:("","",0,0){
+        public MusicRecordModel() : this("","",0,0){
             Title = title;
             Artist = artist;
             Duration = duration;
             Publication_year = publication_year;
         }
 
-        public MusicRecord(string? title, string? artist, int duration,int publication_year){
+        public MusicRecordModel(string? title, string? artist, int duration,int publication_year){
             Title = title;
             Artist = artist;
             Duration = duration;
