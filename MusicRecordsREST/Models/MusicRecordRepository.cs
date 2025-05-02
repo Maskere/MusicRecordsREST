@@ -26,6 +26,9 @@ namespace DRMusic{
                 return records.FindAll(m => m.Publication_year == publication_year);
             }
 
+            if(records == null){
+                throw new ArgumentNullException("Collection is empty");
+            }
             return new List<MusicRecord>(records);
         }
     }

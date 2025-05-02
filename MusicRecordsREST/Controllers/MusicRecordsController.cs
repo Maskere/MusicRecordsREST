@@ -9,30 +9,38 @@ namespace DRMusic{
         // GET: api/<MusicRecordsController>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public ActionResult<List<MusicRecord>> Get([FromQuery] string? title = null, string? artist = null, int? duration = null, int? publication_year = null ) {
-            List<MusicRecord>? mr = repo.Get();
-            
-            if (title != null)
-            {
-                mr = repo.Get(title);
+            try{
+                List<MusicRecord>? mr = repo.Get();
+                if (title != null)
+                {
+                    mr = repo.Get(title);
+                }
+                if (artist != null)
+                {
+                    mr = repo.Get(artist);
+                }
+                if (duration != null)
+                {
+                    mr = repo.Get(duration:duration);
+                }
+                if (publication_year != null)
+                {
+                    mr = repo.Get(publication_year:publication_year);
+                }
+                if (mr == null)
+                {
+                    throw new ArgumentNullException("Collection is empty");
+                }
+                if(mr.Count == 0){
+                    return NoContent();
+                }
+                return Ok(new List<MusicRecord>(mr));
             }
-            if (artist != null)
-            {
-                mr = repo.Get(artist);
+            catch(ArgumentNullException){
+                return NoContent();
             }
-            if (duration != null)
-            {
-                mr = repo.Get(duration:duration);
-            }
-            if (publication_year != null)
-            {
-                mr = repo.Get(publication_year:publication_year);
-            }
-            if (mr == null)
-            {
-                throw new ArgumentNullException("Collection is empty");
-            }
-            return new List<MusicRecord>(mr);
         }
 
         // GET api/<MusicRecordsController>/5
